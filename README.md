@@ -2,18 +2,19 @@
  Forecasting the next day stock price for a given asset utilizing the multivariate adaptive regression splines algorithm and web scraping to get the VIX percent change.
 
 
- The Stock Data is first fetched using the Yahoo Finance api through the pandas-datareader library. 
+ The Stock Data is first fetched using the Yahoo Finance API through the pandas-datareader library. 
 
  Using the BeautifulSoup webscraping library, the VIX percent change is retrieved from Yahoo Finance's page to offer additional investment criteria (if the VIX % change is positive this often signifies a down turn in the overall market, if it is negative the opposite is true). 
 
- The Stock data is then pre-processed to remove any unecessary columns and split into testing and training sets. The open price is used to calculate a few technical indicators to be used in the regression analysis (Hilbert Transform Dominant Cycle period and Rolling Standard Deviation). Any missing values are imputed using k-nearest neighbors from the fancyimpute library.
+ The Stock data is then pre-processed to remove any unnecessary columns and split into testing and training sets. The open price is used to calculate a few technical indicators to be used in the regression analysis (Hilbert Transform Dominant Cycle period and Rolling Standard Deviation). Any missing values are imputed using k-nearest neighbors from the fancyimpute library.
 
- The reulting data is transformed using a log(1+features) transform to mitigrate any exponential trends in the data and to account for the rightward skew in the data's distribution.
+ The resulting data is transformed using a log(1+features) transform to mitigate any exponential trends in the data and to account for the rightward skew in the data's distribution.
 
  The Feature set "X" consists of the 2 technical indicators along with the open price of the stock, and the target "Y" is the high, low, and close price, each fitted to their own regression model.
 
- A MARS regression is then fitted to each of the high, low and close prices separately. 
+ A MARS regression is then fitted to each of the high, low and close prices separately. Adaboost regression is also used to better predict hard cases in each target series. The respective models are then used to predict the out of sample testing set, and directional accuracy is evaluated on each, being displayed in the final console output.
 
+ To run the program, navigate to its directory and open a command prompt. Then enter "python mars_forecast.py". As input, enter the stock ticker and opening price for the day.
 
 
 Here is an example of the visual output after running the script:
