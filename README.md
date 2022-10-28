@@ -4,7 +4,7 @@
 
  The Stock Data is first fetched using the Yahoo Finance API through the pandas-datareader library. 
 
- Using the BeautifulSoup webscraping library, the VIX percent change is retrieved from Yahoo Finance's page to offer further diretional criteria (VIX % change has an inverse relationship with The S&P 500 % change which can be seen by their [negative correlation](https://www.macroption.com/vix-spx-correlation/)). 
+ Using the BeautifulSoup webscraping library, the VIX percent change is retrieved from Yahoo Finance's page to offer further diretional confidence (VIX % change has an inverse relationship with The S&P 500 % change which can be seen by their [negative correlation](https://www.macroption.com/vix-spx-correlation/)). 
 
  The Stock data is then pre-processed to remove any unnecessary columns and split into testing and training sets. The open price is used to calculate a few technical indicators to be used in the regression analysis (Hilbert Transform Dominant Cycle period and Rolling Standard Deviation). Any missing values are imputed using k-nearest neighbors from the fancyimpute library.
 
